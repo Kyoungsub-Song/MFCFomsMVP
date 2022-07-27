@@ -25,6 +25,15 @@
     <Filter Include="소스 파일\Presenter">
       <UniqueIdentifier>{7a1cbd5a-5d5d-4d87-a627-3dc0a0eecd32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\Model">
+      <UniqueIdentifier>{26a5c065-26c6-4a68-9d76-cba0b5614733}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Repository">
+      <UniqueIdentifier>{fe5af769-6824-4b2c-9471-23bfe83561cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Repository">
+      <UniqueIdentifier>{c36b1bd6-2ff8-47f5-8c01-a1b0c4005d1a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MFCFomsMVP.h">
@@ -51,6 +60,15 @@
     <ClInclude Include="MFCFomsMVPDlg.h">
       <Filter>헤더 파일\View</Filter>
     </ClInclude>
+    <ClInclude Include="CUser.h">
+      <Filter>헤더 파일\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="IUserFormRepository.h">
+      <Filter>헤더 파일\Repository</Filter>
+    </ClInclude>
+    <ClInclude Include="CMemoryRepository.h">
+      <Filter>헤더 파일\Repository</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MFCFomsMVP.cpp">
@@ -64,6 +82,12 @@
     </ClCompile>
     <ClCompile Include="MFCFomsMVPDlg.cpp">
       <Filter>소스 파일\View</Filter>
+    </ClCompile>
+    <ClCompile Include="CMemoryRepository.cpp">
+      <Filter>소스 파일\Repository</Filter>
+    </ClCompile>
+    <ClCompile Include="CUser.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

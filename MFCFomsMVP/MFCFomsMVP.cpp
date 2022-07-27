@@ -8,6 +8,7 @@
 #include "MFCFomsMVPDlg.h"
 
 #include "IUserFormView.h"
+#include "CMemoryRepository.h"
 #include "UserFormPresenter.h"
 
 #ifdef _DEBUG
@@ -60,12 +61,15 @@ BOOL CMFCFomsMVPApp::InitInstance()
 	//SetRegistryKey(_T("로컬 애플리케이션 마법사에서 생성된 애플리케이션"));
 
 	//Dependency Injection
+	//repository
+	CMemoryRepository m_UserFormRepository;
 
 	CMFCFomsMVPDlg dlg;
 	m_pMainWnd = &dlg;
 
 	UserFormPresenter m_UserFormPresenter;
 	m_UserFormPresenter.SetIUserForm(&dlg);
+	m_UserFormPresenter.SetIUserFormRepository(&m_UserFormRepository);
 
 
 	INT_PTR nResponse = dlg.DoModal();

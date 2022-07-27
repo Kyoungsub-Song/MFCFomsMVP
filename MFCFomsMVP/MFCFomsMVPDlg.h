@@ -7,6 +7,7 @@
 #include "UserFormPresenter.h"
 
 #include <string>
+#include <list>
 
 using namespace std;
 
@@ -45,7 +46,7 @@ public:
 	UserFormPresenter* m_UserFormPresenter;
 
 	// IUserFormView을(를) 통해 상속됨
-	virtual void SetUserListBox(CListBox data) override;
+	virtual void SetUserListBox(list<CUser> data) override;
 
 	virtual void SetName(string value) override;
 

@@ -183,7 +183,10 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CMemoryRepository.h" />
+    <ClInclude Include="CUser.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="IUserFormRepository.h" />
     <ClInclude Include="IUserFormView.h" />
     <ClInclude Include="MFCFomsMVP.h" />
     <ClInclude Include="MFCFomsMVPDlg.h" />
@@ -193,6 +196,8 @@
     <ClInclude Include="UserFormPresenter.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CMemoryRepository.cpp" />
+    <ClCompile Include="CUser.cpp" />
     <ClCompile Include="MFCFomsMVP.cpp" />
     <ClCompile Include="MFCFomsMVPDlg.cpp" />
     <ClCompile Include="pch.cpp">

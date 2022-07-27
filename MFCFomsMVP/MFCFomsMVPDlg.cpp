@@ -8,6 +8,10 @@
 #include "MFCFomsMVPDlg.h"
 #include "afxdialogex.h"
 
+#include <iostream>
+
+using namespace std;
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -91,14 +95,13 @@ HCURSOR CMFCFomsMVPDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
 }
-void CMFCFomsMVPDlg::SetUserListBox(CListBox data)
+void CMFCFomsMVPDlg::SetUserListBox(list<CUser> data)
 {
-	//m_UserListBox.ResetContent();
-	int count = data.GetCount();
-
-	for (int i = 0; i < count; i++)
+	m_UserListBox.ResetContent();
+	for each (auto i in data)
 	{
-		m_UserListBox.SetItemDataPtr(i, data.GetItemDataPtr(i));
+		m_UserListBox.InsertString(i.GetID(), i.GetName().c_str());
+		cout << "user id : " + i.GetID() << endl;
 	}
 }
 
@@ -144,8 +147,6 @@ void CMFCFomsMVPDlg::SetPresenter(UserFormPresenter* presenter)
 {
 	m_UserFormPresenter = presenter;
 }
-
-
 
 void CMFCFomsMVPDlg::SaveButton_Click()
 {
