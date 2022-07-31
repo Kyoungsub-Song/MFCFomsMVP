@@ -3,29 +3,75 @@
 
 void CMemoryRepository::SaveUser(CUser user)
 {
-    m_listMemoryStorage.push_back(user);
+    ++sequence;
+    user.SetID(sequence);
+    m_mapMemoryStorage.insert(make_pair(sequence, user));
 }
 
 CUser CMemoryRepository::GetUser(long id)
 {
-    CUser* user = new CUser();
+    CUser user;
 
-    for each (auto i in m_listMemoryStorage)
+    for each (auto i in m_mapMemoryStorage)
     {
-        if (id == i.GetID())
+        if (id == i.first)
         {
-           /* user.SetID(i.GetID());
-            user.SetName(i.GetName());
-            user.SetAge(i.GetAge());
-            user.SetAddress(i.GetAddress());*/
+            user.SetID(i.first);
+            user.SetName(i.second.GetName());
+            user.SetAge(i.second.GetAge());
+            user.SetAddress(i.second.GetAddress());
 
-            return i;
+            return i.second;
         }
     }
-    return *user;
+    return user;
 }
 
-list<CUser> CMemoryRepository::GetAllUsers()
+map<long, CUser> CMemoryRepository::GetAllUsers()
 {
-    return m_listMemoryStorage;
+    return m_mapMemoryStorage;
+}
+
+CUser CMemoryRepository::FindbyName(string name)
+{
+    CUser user;
+    for each (auto i in m_mapMemoryStorage)
+    {
+        if (i.second.GetName() == name)
+        {
+            user.SetID(i.second.GetID());
+            user.SetName(i.second.GetName());
+            user.SetAge(i.second.GetAge());
+            user.SetAddress(i.second.GetAddress());
+        }
+    }
+    return user;
+}
+
+CUser CMemoryRepository::FindbyID(long id)
+{
+    CUser user;
+    for each (auto i in m_mapMemoryStorage)
+    {
+        if (i.first == id)
+        {
+            user.SetID(i.first);
+            user.SetName(i.second.GetName());
+            user.SetAge(i.second.GetAge());
+            user.SetAddress(i.second.GetAddress());
+        }
+    }
+    return user;
+}
+
+void CMemoryRepository::UpdateUser(CUser user)
+{
+    for each (auto i in m_mapMemoryStorage)
+    {
+        if (i.first == user.GetID())
+        {
+            m_mapMemoryStorage[i.first] = user;
+            break;
+        }
+    }
 }

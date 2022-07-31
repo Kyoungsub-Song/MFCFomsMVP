@@ -14,10 +14,13 @@ public:
 	void UpdateUser();
 	void UpdateUserListView();
 	void SaveUser();
+	void SelectItem();
 	
 
 protected:
 private:
 	IUserFormView* m_IUserForm;
 	IUserFormRepository* m_IUserFormRepository;
+
+	bool ValidateDuplicationUser(CUser user);
 };

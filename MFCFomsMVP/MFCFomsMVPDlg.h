@@ -46,7 +46,7 @@ public:
 	UserFormPresenter* m_UserFormPresenter;
 
 	// IUserFormView을(를) 통해 상속됨
-	virtual void SetUserListBox(list<CUser> data) override;
+	virtual void SetUserListBox(map<long, CUser> data) override;
 
 	virtual void SetName(string value) override;
 
@@ -63,4 +63,10 @@ public:
 	virtual void SetPresenter(UserFormPresenter* presenter) override;
 
 	afx_msg void SaveButton_Click();
+	CButton m_UpdateBtn;
+	afx_msg void UpdateBtn_Click();
+	afx_msg void OnLbnSelchangeList1();
+
+	// IUserFormView을(를) 통해 상속됨
+	virtual long getSelectedUserID() override;
 };

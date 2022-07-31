@@ -35,12 +35,15 @@ void CMFCFomsMVPDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT2, m_AgeEditBox);
 	DDX_Control(pDX, IDC_EDIT3, m_AddressEditBox);
 	DDX_Control(pDX, IDC_BUTTON1, m_SaveButton);
+	DDX_Control(pDX, IDC_BUTTON2, m_UpdateBtn);
 }
 
 BEGIN_MESSAGE_MAP(CMFCFomsMVPDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_BUTTON1, &CMFCFomsMVPDlg::SaveButton_Click)
+	ON_BN_CLICKED(IDC_BUTTON2, &CMFCFomsMVPDlg::UpdateBtn_Click)
+	ON_LBN_SELCHANGE(IDC_LIST1, &CMFCFomsMVPDlg::OnLbnSelchangeList1)
 END_MESSAGE_MAP()
 
 
@@ -95,20 +98,19 @@ HCURSOR CMFCFomsMVPDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
 }
-void CMFCFomsMVPDlg::SetUserListBox(list<CUser> data)
+void CMFCFomsMVPDlg::SetUserListBox(map<long, CUser> data)
 {
 	m_UserListBox.ResetContent();
 	for each (auto i in data)
 	{
-		m_UserListBox.InsertString(i.GetID(), i.GetName().c_str());
-		cout << "user id : " + i.GetID() << endl;
+		m_UserListBox.InsertString(-1, i.second.GetName().c_str());
+		cout << "user id : " + i.second.GetID() << endl;
 	}
 }
 
 void CMFCFomsMVPDlg::SetName(string value)
 {
-	CString cstr = value.c_str();
-	m_NameEditBox.SetWindowTextA(cstr);
+	m_NameEditBox.SetWindowTextA(value.c_str());
 }
 
 string CMFCFomsMVPDlg::GetName()
@@ -136,11 +138,15 @@ int CMFCFomsMVPDlg::GetAge()
 
 void CMFCFomsMVPDlg::SetAddress(string value)
 {
+	m_AddressEditBox.SetWindowTextA(value.c_str());
 }
 
 string CMFCFomsMVPDlg::GetAddress()
 {
-	return string();
+	CString cstr = _T("");
+	m_AddressEditBox.GetWindowTextA(cstr);
+	string str = CT2CA(cstr);
+	return str;
 }
 
 void CMFCFomsMVPDlg::SetPresenter(UserFormPresenter* presenter)
@@ -152,4 +158,26 @@ void CMFCFomsMVPDlg::SaveButton_Click()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	m_UserFormPresenter->SaveUser();
+}
+
+
+void CMFCFomsMVPDlg::UpdateBtn_Click()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	m_UserFormPresenter->UpdateUser();
+}
+
+
+void CMFCFomsMVPDlg::OnLbnSelchangeList1()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	
+	m_UserFormPresenter->SelectItem();
+}
+
+long CMFCFomsMVPDlg::getSelectedUserID()
+{
+	long value = m_UserListBox.GetCurSel();
+
+	return value;
 }
